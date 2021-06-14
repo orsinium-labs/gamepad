@@ -25,4 +25,5 @@ func Test(t *testing.T) {
 	is.False(st.A())
 	is.False(st.B())
 	is.Equal(st.LT(), -100)
+	is.Equal(st.LS().X, 0)
 }

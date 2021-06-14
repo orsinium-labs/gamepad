@@ -23,5 +23,6 @@ func Test(t *testing.T) {
 	st, err = g.State()
 	is.Nil(err)
 	is.False(st.A())
+	is.False(st.B())
 	is.Equal(st.LT(), -100)
 }

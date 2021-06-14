@@ -20,57 +20,57 @@ type State struct {
 
 // A button is pressed
 func (s State) A() bool {
-	return s.buttons&0b_0001 == 1
+	return s.buttons&0b_0001 > 0
 }
 
 // B button is pressed
 func (s State) B() bool {
-	return s.buttons&0b_0010 == 1
+	return s.buttons&0b_0010 > 0
 }
 
 // X button is pressed
 func (s State) X() bool {
-	return s.buttons&0b_0100 == 1
+	return s.buttons&0b_0100 > 0
 }
 
 // Y button is pressed
 func (s State) Y() bool {
-	return s.buttons&0b_1000 == 1
+	return s.buttons&0b_1000 > 0
 }
 
 // Left Bumper is pressed
 func (s State) LB() bool {
-	return s.buttons&0b_0001_0000 == 1
+	return s.buttons&0b_0001_0000 > 0
 }
 
 // Right Bumper is pressed
 func (s State) RB() bool {
-	return s.buttons&0b_0010_0000 == 1
+	return s.buttons&0b_0010_0000 > 0
 }
 
 // Back button is pressed
 func (s State) Back() bool {
-	return s.buttons&0b_0100_0000 == 1
+	return s.buttons&0b_0100_0000 > 0
 }
 
 // Start button is pressed
 func (s State) Start() bool {
-	return s.buttons&0b_1000_0000 == 1
+	return s.buttons&0b_1000_0000 > 0
 }
 
 // Guide button is pressed
 func (s State) Guide() bool {
-	return s.buttons&0b_0001_0000_0000 == 1
+	return s.buttons&0b_0001_0000_0000 > 0
 }
 
 // Left Stick Button is pressed
 func (s State) LSB() bool {
-	return s.buttons&0b_0010_0000_0000 == 1
+	return s.buttons&0b_0010_0000_0000 > 0
 }
 
 // Right Stick Button is pressed
 func (s State) RSB() bool {
-	return s.buttons&0b_0100_0000_0000 == 1
+	return s.buttons&0b_0100_0000_0000 > 0
 }
 
 // Left Stick coordinates, from -100 to 100.

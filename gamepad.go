@@ -22,6 +22,9 @@ func NewGamepad(id int) (*GamePad, error) {
 // The current state of the gamepad
 func (g *GamePad) State() (State, error) {
 	jState, err := g.js.Read()
-	state := State{axis: jState.AxisData, buttons: jState.Buttons}
+	state := State{
+		axis:    append([]int(nil), jState.AxisData...),
+		buttons: jState.Buttons,
+	}
 	return state, err
 }

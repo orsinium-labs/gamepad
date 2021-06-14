@@ -13,10 +13,14 @@ func Test(t *testing.T) {
 	g, err := gamepad.NewGamepad(1)
 	is.Nil(err)
 
+	st, err := g.State()
+	is.Nil(err)
+	st.LS()
+
 	// On linux, joystick lib reads the data asynchronously
 	time.Sleep(100 * time.Millisecond)
 
-	st, err := g.State()
+	st, err = g.State()
 	is.Nil(err)
 	is.False(st.A())
 	is.Equal(st.LT(), -100)

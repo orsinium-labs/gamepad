@@ -4,7 +4,10 @@ import (
 	"image"
 )
 
-const axisMod = 327
+const (
+	axisMod   = 327
+	axisCount = 8
+)
 
 // State holds the state of the gamepad buttons.
 //
@@ -73,6 +76,9 @@ func (s State) RSB() bool {
 // Left Stick coordinates, from -100 to 100.
 // Up position is negative.
 func (s State) LS() image.Point {
+	if len(s.axis) < axisCount {
+		return image.Point{}
+	}
 	return image.Point{
 		X: s.axis[0] / axisMod,
 		Y: s.axis[1] / axisMod,
@@ -82,6 +88,9 @@ func (s State) LS() image.Point {
 // Right Stick coordinates, from -100 to 100.
 // Up position is negative.
 func (s State) RS() image.Point {
+	if len(s.axis) < axisCount {
+		return image.Point{}
+	}
 	return image.Point{
 		X: s.axis[3] / axisMod,
 		Y: s.axis[4] / axisMod,
@@ -90,30 +99,48 @@ func (s State) RS() image.Point {
 
 // Directional Pad left button is pressed
 func (s State) DPadLeft() bool {
+	if len(s.axis) < axisCount {
+		return false
+	}
 	return s.axis[6] < 0
 }
 
 // Directional Pad right button is pressed
 func (s State) DPadRight() bool {
+	if len(s.axis) < axisCount {
+		return false
+	}
 	return s.axis[6] > 0
 }
 
 // Directional Pad up button is pressed
 func (s State) DPadUp() bool {
+	if len(s.axis) < axisCount {
+		return false
+	}
 	return s.axis[7] < 0
 }
 
 // Directional Pad down button is pressed
 func (s State) DPadDown() bool {
+	if len(s.axis) < axisCount {
+		return false
+	}
 	return s.axis[7] > 0
 }
 
 // Left Trigger state from -100 to 100 where 100 is pressed.
 func (s State) LT() int {
+	if len(s.axis) < axisCount {
+		return -100
+	}
 	return s.axis[2] / axisMod
 }
 
 // Right Trigger state from -100 to 100 where 100 is pressed.
 func (s State) RT() int {
+	if len(s.axis) < axisCount {
+		return -100
+	}
 	return s.axis[5] / axisMod
 }

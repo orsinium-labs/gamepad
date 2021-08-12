@@ -18,6 +18,18 @@ type State struct {
 	buttons uint32
 }
 
+// Equals verify if actual state is equals to another
+func (s State) Equals(state State) bool {
+	// not verifying axis length (assuming it wont change)
+	for i, ax := range s.axis {
+		if ax != state.axis[i] {
+			return false
+		}
+	}
+
+	return s.buttons == state.buttons
+}
+
 // A button is pressed
 func (s State) A() bool {
 	return s.buttons&0b_0001 > 0
